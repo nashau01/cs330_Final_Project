@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% block head %}
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title> {% block title %} {% endblock %}</title><link rel=stylesheet href="static/style.css" type="text/css" />
+    {% endblock %}
 </head>
 <body>
+<div id="content">
+{% block content %}
 
+{% endblock %}
+</div>
+
+{% block footer %}
+&copy; Copyright 2016 by Austin Nash and Evan Woodard
+{% endblock %}
 </body>
 </html>

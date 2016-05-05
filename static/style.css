@@ -1,5 +1,13 @@
-html {
+html{
     background-color:lightgoldenrodyellow;
+}
+
+#login{
+    text-align: center;
+}
+
+.HeroRow{
+    display: inline;
 }
 
 #topbar{
@@ -17,11 +25,11 @@ html {
   width: 100%;
 }
 
-@-webkit-keyframes mymove {
+@-webkit-keyframes mymove{
     50% {background-color: dodgerblue}
 }
 
 /* Standard syntax */
-@keyframes mymove {
+@keyframes mymove{
     50% {background-color: silver;}
 }
