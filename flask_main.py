@@ -1,50 +1,10 @@
 from flask import Flask, request, jsonify, render_template
-import os
 from flask_sqlalchemy import SQLAlchemy
+from model.fp_sql import *
 
-from datetime import date
 
 app = Flask(__name__)
 app.debug = True
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/heroes.db'
-db = SQLAlchemy(app)
-
-class Hero(db.Model):
-    __tablename__ = 'hero'
-    name = db.Column(db.String, primary_key=True)
-
-    #id = db.Column(db.Integer, primary_key=True)
-    #task = db.Column(db.String)
-    #priority = db.Column(db.String)
-    #due = db.Column(db.Date)
-    #done = db.Column(db.Boolean)
-
-"""
-class User(db.Model):
-    __tablename__ = 'user'
-    username = db.Column(db.String, primary_key=True)
-    heroes_owned = db.Column(?) #Many
-    heroes_favorited = db.Column(?) #Many
-"""
-
-"""
-class HeroUser(db.Model):
-    ?
-"""
-
-db.create_all()
-
-results = db.session.query(Hero).all()
-
-if len(results) == 0:
-    zagara = Hero(name = 'Zagara')
-    db.session.add(zagara)
-    uther = Hero(name = 'Uther')
-    db.session.add(uther)
-
-    db.session.commit()
-
 
 #Some of the code below still needs to be tranlated in flask-sqlalchemy
 
@@ -66,7 +26,7 @@ def get_all_tasks():
         reslist.append(dict(name=row.name))
 
     print(reslist)
-    return jsonify(tasklist=reslist)
+    return jsonify(heroes=reslist)
 
 """
 @app.route('/todo/<int:task_id>', methods = ['PUT'])
@@ -82,3 +42,4 @@ def todo_one(task_id):
 
 if __name__ == '__main__':
     app.run()
+
