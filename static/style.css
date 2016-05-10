@@ -1,4 +1,4 @@
-html{
+html, body, h1, h2, h3, h3, h5, h6, footer, div, nav{
     background-color:lightgoldenrodyellow;
 }
 
@@ -6,7 +6,12 @@ html{
     text-align: center;
 }
 
-.HeroRow{
+#heroList {
+    text-align: center;
+    display: inline;
+}
+
+#heroList>ul, li {
     display: inline;
 }
 

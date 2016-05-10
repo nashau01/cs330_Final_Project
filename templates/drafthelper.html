@@ -5,100 +5,13 @@
 
 <h1>Select All Heros in the Order They Were Drafted</h1>
 
-<ul>
-    <li>
-        <ul class="HeroRow">
-            <li id="hero_1"><img src="hero_one"></li>
-            <li id="hero_2"><img src="hero_two"></li>
-            <li id="hero_3"><img src="hero_three"></li>
-            <li id="hero_4"></li>
-            <li id="hero_5"></li>
-        </ul>
-    </li>
-    <li>
-        <ul class="HeroRow">
-            <li id="hero_6"></li>
-            <li id="hero_7"></li>
-            <li id="hero_8"></li>
-            <li id="hero_9"></li>
-            <li id="hero_10"></li>
-        </ul>
-    </li>
-    <li>
-        <ul class="HeroRow">
-            <li id="hero_11"></li>
-            <li id="hero_12"></li>
-            <li id="hero_13"></li>
-            <li id="hero_14"></li>
-            <li id="hero_15"></li>
-        </ul>
-    </li>
-    <li>
-        <ul class="HeroRow">
-            <li id="hero_16"></li>
-            <li id="hero_17"></li>
-            <li id="hero_18"></li>
-            <li id="hero_19"></li>
-            <li id="hero_20"></li>
-        </ul>
-    </li>
-    <li>
-        <ul class="HeroRow">
-            <li id="hero_21"></li>
-            <li id="hero_22"></li>
-            <li id="hero_23"></li>
-            <li id="hero_24"></li>
-            <li id="hero_25"></li>
-        </ul>
-    </li>
-    <li>
-        <ul class="HeroRow">
-            <li id="hero_26"></li>
-            <li id="hero_27"></li>
-            <li id="hero_28"></li>
-            <li id="hero_29"></li>
-            <li id="hero_30"></li>
-        </ul>
-    </li>
-    <li>
-        <ul class="HeroRow">
-            <li id="hero_31"></li>
-            <li id="hero_32"></li>
-            <li id="hero_33"></li>
-            <li id="hero_34"></li>
-            <li id="hero_35"></li>
-        </ul>
-    </li>
-    <li>
-        <ul class="HeroRow">
-            <li id="hero_36"></li>
-            <li id="hero_37"></li>
-            <li id="hero_38"></li>
-            <li id="hero_39"></li>
-            <li id="hero_40"></li>
-        </ul>
-    </li>
-    <li>
-        <ul class="HeroRow">
-            <li id="hero_41"></li>
-            <li id="hero_42"></li>
-            <li id="hero_43"></li>
-            <li id="hero_44"></li>
-            <li id="hero_45"></li>
-        </ul>
-    </li>
-    <li>
-        <ul class="HeroRow">
-            <li id="hero_46"></li>
-            <li id="hero_47"></li>
-            <li id="hero_48"></li>
-            <li id="hero_49"></li>
-            <li id="hero_50"></li>
-        </ul>
-    </li>
-</ul>
+<ul id="heroList"></ul>
 
 
 
-    <script type="text/javascript" src="heroSelector.js"></script>
+<script type="text/javascript" src="../static/heroSelector.js">
+    window.onload = function() { heroSelector(); };
+</script>
+
+
 {% endblock %}
