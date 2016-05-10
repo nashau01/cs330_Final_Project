@@ -21,7 +21,6 @@ for hero1 in heroes:
             }
             G.add_edge(hero1, hero2, adv_dict)
 
-
 print(G.edges())
 
 
