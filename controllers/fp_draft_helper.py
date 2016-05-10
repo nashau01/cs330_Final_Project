@@ -1,9 +1,15 @@
 
+
+
 # Keys are hero names as a string
 # Values are a list of dictionaries
     # 1) With
         # Keys are
 all_heroes = {}
+
+#
+# - or -  Is this fundamentally a graph theory application? Vertices: Heroes, Edges: counter/synergy weights
+#
 
 
 class DraftInput:
@@ -22,9 +28,9 @@ class OptimalSelectionCalculator:
         self.synergy_weights = {}
 
     def findOptimalSelections(self):
-        self.counter_weights = findCounterWeights()
+        self.counter_weights = findCounterAdvantages()
 
-        self.synergy_weights = findSynergyWeights()
+        self.synergy_weights = findSynergyAdvantages()
 
     def findCounterWeights(self):
         for a_hero in all_heroes:

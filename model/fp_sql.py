@@ -4,37 +4,39 @@ from flask_sqlalchemy import *
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/heroes.db'
 
 db = SQLAlchemy(app)
-db.create_all()
 
 class Hero(db.Model):
     __tablename__ = 'hero'
     name = db.Column(db.String, primary_key=True)
 
-    #id = db.Column(db.Integer, primary_key=True)
-    #task = db.Column(db.String)
-    #priority = db.Column(db.String)
-    #due = db.Column(db.Date)
-    #done = db.Column(db.Boolean)
+class User(db.Model):
+    __tablename__ = 'user'
+    username = db.Column(db.String, primary_key=True)
+    password = db.Column(db.String)
 
-    """
-    class User(db.Model):
-        __tablename__ = 'user'
-        username = db.Column(db.String, primary_key=True)
-        heroes_owned = db.Column(?) #Many
-        heroes_favorited = db.Column(?) #Many
-    """
+    #
+    #Q: How is a many to many relationship betwen Hero and User accomplished in flask_sqlalchemy
+    #
+    #heroes_owned = db.Column(?) #Many
+    #heroes_favorited = db.Column(?) #Many
 
-    """
-    class HeroUser(db.Model):
-        ?
-    """
+db.create_all()
+
+
+"""
+class HeroUser(db.Model):
+    ?
+"""
 
 results = db.session.query(Hero).all()
 
-if len(results) == 0:
-    zagara = Hero(name = 'Zagara')
-    db.session.add(zagara)
-    uther = Hero(name = 'Uther')
-    db.session.add(uther)
-
-    db.session.commit()
+# This is how the values were added originally, but it crashes the app if you try to add them again.
+#if len(results) == 0:
+# zagara = Hero(name = 'Zagara')
+# db.session.add(zagara)
+# uther = Hero(name = 'Uther')
+# db.session.add(uther)
+# graymane = Hero(name = 'Graymane')
+# db.session.add(graymane)
+#
+# db.session.commit()
