@@ -1,0 +1,1 @@
+web: gunicorn cs330_fp:app

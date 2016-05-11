@@ -54,4 +54,3 @@ if len(results) == 0:
     db.session.commit()
 
 
-
