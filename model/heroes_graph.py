@@ -4,9 +4,11 @@ G = nx.Graph()
 heroes = ["Uther", "Zagara", "Muradin", "Valla"]
 
 def getCounterAdvFor(hero1, hero2):
+    # G.get_edge_data(hero1, hero2).counterAdv()
     pass
 
 def getSynergyAdvFor(hero1, hero2):
+    # G.get_edge_data(hero1, hero2).counterAdv()
     pass
 
 for hero1 in heroes:

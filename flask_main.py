@@ -17,7 +17,6 @@ def hello():
 def render_a_template():
     return render_template('drafthelper.html', foo='')
 
-
 # #@flask_app.route('/todo', methods = ['GET'])
 # @flask_app.route('/heroes', methods = ['GET'])
 # def get_all_heroes():
