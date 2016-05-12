@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
-# from model.fp_flask_sql import *
+from model.fp_flask_sql import *
 
 flask_app = Flask(__name__)
 flask_app.debug = True
