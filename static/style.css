@@ -11,9 +11,10 @@ html, body, h1, h2, h3, h3, h5, h6, footer, div, nav{
     display: inline;
 }
 
-#heroList>ul, li {
-    display: inline;
+#heroList > ul, li {
+    display: inline-block;
 }
+
 
 #topbar{
   color:#FFFFFF;
@@ -37,4 +38,14 @@ html, body, h1, h2, h3, h3, h5, h6, footer, div, nav{
 /* Standard syntax */
 @keyframes mymove{
     50% {background-color: silver;}
+}
+
+footer{
+  background-color: cornflowerblue;
+  clear:both;
+  position: fixed;
+  left:0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
