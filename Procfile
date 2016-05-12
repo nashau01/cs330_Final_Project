@@ -1,1 +1,1 @@
-web: gunicorn cs330_fp:app
+web: gunicorn flask_main:app
