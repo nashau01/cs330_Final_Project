@@ -29,18 +29,6 @@ def render_a_template():
 #     print(reslist)
 #     return jsonify(heroes=reslist)
 
-"""
-@flask_app.route('/todo/<int:task_id>', methods = ['PUT'])
-def todo_one(task_id):
-    Session = sessionmaker(bind=engine)
-    Session.configure()
-    session = Session()
-    print(request.json)
-    row = Todo.query.filter_by(id=task_id).update(dict(done=True))
-    session.commit()
-    return "done"
-"""
-
 if __name__ == '__main__':
     flask_app.run()
 

@@ -1,0 +1,7 @@
+Questions:
+
+1) How much bootstrap must we use.
+
+2) How is the requests package used? Is it really feasible to pull percentages from hotslogs.com?
+
+3) Why is the application deployed to heroku giving a different error?
