@@ -6,6 +6,7 @@ from flask_sqlalchemy import *
 flask_app = Flask(__name__)
 flask_app.debug = True
 
+
 #
 # BEGIN DATABASE SECTION #
 #
@@ -45,27 +46,9 @@ class HeroUser(db.Model):
     ?
 """
 
-results = db.session.query(Hero).all()
-
-#This is how the values were added originally, but it crashes the app if you try to add them again.
-if len(results) == 0:
-    zagara = Hero(id = 1, name = 'Zagara')
-    db.session.add(zagara)
-    #db.session.delete(zagara)
-    uther = Hero(id = 2, name = 'Uther')
-    db.session.add(uther)
-    #db.session.delete(uther)
-
-    graymane = Hero(id = 3, name = 'Graymane')
-    db.session.add(graymane)
-    #db.session.delete(graymane)
-
-    db.session.commit()
-
 #
 # END DATABASE SECTION
 #
-
 
 
 #@flask_app.route('/todo/<int:task_id>')
@@ -91,6 +74,38 @@ def render_a_template():
 #     print(reslist)
 #     return jsonify(heroes=reslist)
 
+def testDatabase():
+    results = db.session.query(Hero).all()
+
+    if len(results) == 0:
+        zagara = Hero(id = 1, name = 'Zagara')
+        db.session.add(zagara)
+        #db.session.delete(zagara)
+        uther = Hero(id = 2, name = 'Uther')
+        db.session.add(uther)
+        #db.session.delete(uther)
+
+        graymane = Hero(id = 3, name = 'Graymane')
+        db.session.add(graymane)
+        #db.session.delete(graymane)
+
+        db.session.commit()
+
+    # User.query.filter_by(username='admin').first()
+    # graymane = Hero.query().filter_by(name = "graymane").first()  ???
+    # or
+    # graymane = User.query.filter_by(username='admin').first()
+
+    # db.session.delete(results[1])
+    # db.session.commit()
+
+    for a_hero in results:
+        print(a_hero.name)
+
+testDatabase()
+
 if __name__ == '__main__':
     flask_app.run()
+
+
 
