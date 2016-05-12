@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 # from model.fp_flask_sql import *
 from flask_sqlalchemy import *
+from controllers import forms
 
 flask_app = Flask(__name__)
 flask_app.debug = True
@@ -74,10 +75,26 @@ if len(results) == 0:
 
 @flask_app.route("/")
 def hello():
-    return render_template("login.html")
+    return render_template("splashPage.html")
 
-@flask_app.route("/draft")
+@flask_app.route("/register", methods=['GET', 'POST'])
+def register():
+    form = forms.RegistrationForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User(form.username.data, form.password.data)
+
+    return render_template('register.html', form=form)
+
+@flask_app.route("/login")
+def login():
+    return render_template('login.html')
+
+@flask_app.route("/draft", methods=['POST'])
 def render_a_template():
+    username = request.form['username']
+    password = request.form['password']
+
+
     return render_template('drafthelper.html', foo='')
 
 # #@flask_app.route('/todo', methods = ['GET'])
