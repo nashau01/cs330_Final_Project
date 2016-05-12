@@ -9,10 +9,13 @@ app.debug = True
 #def index(task_id):
 #    return jsonify(greeting="<h1> Hello Task Id # {}  </h1>".format(task_id))
 
+@app.route("/")
+def hello():
+    return render_template("login.html")
 
 @app.route("/draft")
 def render_a_template():
-    return render_template('drafthelper.html', foo='bar')
+    return render_template('drafthelper.html', foo='')
 
 
 #@app.route('/todo', methods = ['GET'])
