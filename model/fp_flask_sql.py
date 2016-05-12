@@ -1,9 +1,9 @@
-from flask_main import app
+from flask_main import flask_app
 from flask_sqlalchemy import *
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/heroes2.db'
+flask_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/heroes2.db'
 
-db = SQLAlchemy(app)
+db = SQLAlchemy(flask_app)
 
 hero_user_table = db.Table('hero_user',
     db.Column('hero_id', db.Integer, db.ForeignKey('hero.id')),

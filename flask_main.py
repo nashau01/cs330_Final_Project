@@ -2,24 +2,24 @@ from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from model.fp_flask_sql import *
 
-app = Flask(__name__)
-app.debug = True
+flask_app = Flask(__name__)
+flask_app.debug = True
 
-#@app.route('/todo/<int:task_id>')
+#@flask_app.route('/todo/<int:task_id>')
 #def index(task_id):
 #    return jsonify(greeting="<h1> Hello Task Id # {}  </h1>".format(task_id))
 
-@app.route("/")
+@flask_app.route("/")
 def hello():
     return render_template("login.html")
 
-@app.route("/draft")
+@flask_app.route("/draft")
 def render_a_template():
     return render_template('drafthelper.html', foo='')
 
 
-#@app.route('/todo', methods = ['GET'])
-@app.route('/heroes', methods = ['GET'])
+#@flask_app.route('/todo', methods = ['GET'])
+@flask_app.route('/heroes', methods = ['GET'])
 def get_all_heroes():
     heroes = Hero.query.all()
     reslist = []
@@ -30,7 +30,7 @@ def get_all_heroes():
     return jsonify(heroes=reslist)
 
 """
-@app.route('/todo/<int:task_id>', methods = ['PUT'])
+@flask_app.route('/todo/<int:task_id>', methods = ['PUT'])
 def todo_one(task_id):
     Session = sessionmaker(bind=engine)
     Session.configure()
@@ -42,5 +42,5 @@ def todo_one(task_id):
 """
 
 if __name__ == '__main__':
-    app.run()
+    flask_app.run()
 

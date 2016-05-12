@@ -1,7 +1,7 @@
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+flask_app = Flask(__name__)
 SQLALCHEMY_DATABASE_URI='postgresql://username:password@localhost:5432/database'
 db = SQLAlchemy(app)
 relationship_table=db.Table('relationship_table',
@@ -29,7 +29,7 @@ from flask_sqlalchemy import *
 # from sqlalchemy.orm import mapper
 # from yourapplication.database import metadata, db_session
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/heroes.db'
+flask_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/heroes.db'
 
 db = SQLAlchemy(app)
 
