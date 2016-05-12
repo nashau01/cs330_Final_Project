@@ -1,5 +1,5 @@
 from wtforms import Form, BooleanField, StringField, validators
-from model.fp_flask_sql import *
+# from model.fp_flask_sql import *
 
 
 class RegistrationForm(Form):
