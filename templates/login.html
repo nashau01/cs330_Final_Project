@@ -8,10 +8,9 @@
 
 
 
-<form id="login">
-    Username: <input title="usernameInput" id="usernameInput" type="text" value=""> <br>
-    Password: <input title="passwordInput" id="passwordInput" type="password" value=""> <br>
-    <input type="submit">
+<form method="POST" action="../controllers/forms.py">
+    <div> {{ form.username.label }}: {{ ProfileForm.username(class="css_class") }}</div>
+    <div> {{ form.password.label }}: {{ ProfileForm.password() }}</div>
 </form>
 
 {%  endblock %}
