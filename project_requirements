@@ -7,9 +7,9 @@ following criteria in terms of the use of web2py.
 To earn an A on the project you will need to [complete the following].
 
 You must have at least three views (Think templates)
-    1) Create a username and password.                                            - Evan
+    1) Create a username and password.                                            - Evan    √
     2) Selecting owned and favorite heroes, possible from a list of checkboxes.   - Evan
-    3) The draft helper tool — input heroes already selected in the draft.        - Austin / Evan
+    3) The draft helper tool — input heroes already selected in the draft.        - Austin / Evan  ->
 
 You must have at least three controllers (Think python functions with @app.route decorators)
    1) Store username and password in the database.                                                                - Evan / Austin

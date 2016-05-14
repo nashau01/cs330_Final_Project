@@ -62,7 +62,11 @@ def hello():
 def register():
     form = forms.RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-        user = User(form.username.data, form.password.data)
+        user = User(username = form.username.data, password = form.password.data)
+
+        db.session.add(user)
+        db.session.commit()
+        printDatabase()
 
     return render_template('register.html', form=form)
 
@@ -114,30 +118,33 @@ def testDatabase():
     # db.session.add(bob)
     # db.session.commit()
 
-    post_hero_query = db.session.query(Hero).all()
-    post_user_query = db.session.query(User).all()
-
     # DELETING FROM THE DATABASE
     # db.session.delete(post_results[0])
     # db.session.commit()
 
-    # PRINTING DATABASE CONTENT
-    printing_database = False
-    if (printing_database):
-        for a_hero in post_hero_query:
-            print(a_hero.name)
-            print("   has users: ")
-            for a_user in a_hero.hero_user:
-                print("   ", a_user.username, "\n")
-                # print("      has heroes: ")
-                # for hero2 in a_user.hero_user:
-                #     print("      ", hero2.name, "\n")
+    printDatabase()
 
-        for a_user in post_user_query:
-            print(a_user.username)
-            print("   has heroes: ")
-            for a_hero in a_user.hero_user:
-                print("   ", a_hero.name, "\n")
+
+def printDatabase():
+    post_hero_query = db.session.query(Hero).all()
+    post_user_query = db.session.query(User).all()
+
+    # PRINTING DATABASE CONTENT
+
+    for a_hero in post_hero_query:
+        print(a_hero.name)
+        print("   has users: ")
+        for a_user in a_hero.hero_user:
+            print("   ", a_user.username, "\n")
+            # print("      has heroes: ")
+            # for hero2 in a_user.hero_user:
+            #     print("      ", hero2.name, "\n")
+
+    for a_user in post_user_query:
+        print(a_user.username)
+        print("   has heroes: ")
+        for a_hero in a_user.hero_user:
+            print("   ", a_hero.name, "\n")
 
 testDatabase()
 
