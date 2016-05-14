@@ -5,12 +5,13 @@ from wtforms import Form, BooleanField, StringField, validators, PasswordField, 
 class RegistrationForm(Form):
     username = StringField('Username', [validators.Length(min=3, max=20)])
     password = PasswordField('Password', [validators.Length(min=5, max=20), validators.DataRequired()])
-    validator = HiddenField('SuperSecret', [validators.DataRequired], default="so Secret")
+
 
 
 class LoginForm(Form):
     username = StringField('Username', [validators.DataRequired()])
     password = PasswordField('Password', [validators.DataRequired()])
+    validator = HiddenField('SuperSecret', [validators.DataRequired], default="so Secret")
 
 def register(request):
     form = RegistrationForm(request.POST)
