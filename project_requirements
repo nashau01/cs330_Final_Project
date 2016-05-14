@@ -12,8 +12,8 @@ You must have at least three views (Think templates)
     3) The draft helper tool — input heroes already selected in the draft.        - Austin / Evan  ->
 
 You must have at least three controllers (Think python functions with @app.route decorators)
-   1) Store username and password in the database.                                                                - Evan / Austin
-   2) Store owned and favorited heroes in the database.                                                           - Evan / Austin
+   1) Store username and password in the database.                                                                - Evan / Austin   ->
+   2) Store owned and favorited heroes in the database.                                                           - Evan / Austin   ->
    3) Compute the optimal hero selections as part of the draft tool and return that list for display to the user. - Austin
 
 Evan / Austin - You must use the SqlAlchemy plugin and create a database with 3-4 tables. These tables should incorporate a one to many relationship in some way, or they may have a many to many relationship.

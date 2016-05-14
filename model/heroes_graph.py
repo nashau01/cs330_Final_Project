@@ -1,29 +1,38 @@
 import networkx as nx
 G = nx.Graph()
+import random
 
-heroes = ["Uther", "Zagara", "Muradin", "Valla"]
+all_heroes = ["abathur", "anubarak", "artanis", "arthas", "azmodan", "brightwing", "chen",
+    "chogall", "chromie", "dehaka", "diablo", "etc", "falstad", "gazlowe", "greymane", "illidan",
+    "jaina", "johanna", "kaelthas", "kerrigan", "kharazim", "leoric", "li-ming",
+    "lili", "lt-morales", "lunara", "malfurion", "muradin", "murky", "nazeebo",
+    "nova", "raynor", "rehgar", "rexxar", "sgt-hammer", "sonya", "stitches", "sylvanas",
+    "tassadar", "the-butcher", "the-lost-vikings", "thrall", "tracer", "tychus",
+    "tyrael", "tyrande", "uther", "valla", "xul", "zagara", "zeratul"]
 
 def getCounterAdvFor(hero1, hero2):
     # G.get_edge_data(hero1, hero2).counterAdv()
-    pass
+
+    return random.randrange(-800, 800)
 
 def getSynergyAdvFor(hero1, hero2):
     # G.get_edge_data(hero1, hero2).counterAdv()
-    pass
+    return random.randrange(-800, 800)
 
-for hero1 in heroes:
+for hero1 in all_heroes:
 #    if hero1 not in G.nodes():
     G.add_node(hero1)
 
-    for hero2 in heroes:
+    for hero2 in all_heroes:
         if hero1 != hero2:
-            adv_dict = {
-                "CA": getCounterAdvFor(hero1, hero2),
-                "SA": getSynergyAdvFor(hero1, hero2)
-            }
-            G.add_edge(hero1, hero2, adv_dict)
+            counter_adv_var = getCounterAdvFor(hero1, hero2)
+            synergy_adv_var = getSynergyAdvFor(hero1, hero2)
 
-print(G.edges())
+            G.add_edge(hero1, hero2, counter_adv = counter_adv_var, synergy_adv = synergy_adv_var)
+
+# for an_edge in G.edges():
+def main():
+    print(G.edge['artanis']['arthas'])
 
 
 

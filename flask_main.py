@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 # from model.fp_flask_sql import *
 from flask_sqlalchemy import *
 from controllers import forms
+from model.heroes_graph import *
 
 flask_app = Flask(__name__)
 flask_app.debug = True
@@ -94,8 +95,28 @@ def login():
 def render_a_template():
     form = forms.RegistrationForm(request.form)
 
-
     return render_template('drafthelper.html', foo='')
+
+def addUserToDB(in_username, in_password):
+    user = User(username = in_username, password = in_password)
+    if db.session.query(User).filter_by(username = in_username).first() != None:
+        print("Database already contains that username")
+    else:
+        db.session.add(user)
+        db.session.commit()
+
+def addHeroToDB(in_hero_name):
+    hero = Hero(name = in_hero_name)
+    if db.session.query(Hero).filter_by(name = in_hero_name).first() != None:
+        print("Database already contains that hero")
+    else:
+        db.session.add(hero)
+        db.session.commit()
+
+def addHeroForUser(in_hero_name, in_username):
+    hero_entry = db.session.query(Hero).filter_by(name = in_hero_name)
+    user_entry = db.session.query(User).filter_by(username = in_username)
+    hero_entry.hero_user.append(user_entry)
 
 # #@flask_app.route('/todo', methods = ['GET'])
 # @flask_app.route('/heroes', methods = ['GET'])
