@@ -63,25 +63,37 @@ def register():
 
 @flask_app.route("/userProfile", methods=['GET', 'POST'])
 def profile():
-    form = forms.LoginForm(request.form)
-    form2 = forms.RegistrationForm(request.form)
-    if request.method == 'POST' and form.validate():
-        thisUser = db.session.query(User).filter_by(username=form.username.data).first()
-        #if thisUser.password == form.password.data:
-            #display thisUser's heroes
-            #pass
 
-    elif request.method=='POST' and form2.validate():
-        newUser = User(username=form2.username.data, password=form2.password.data)
+    print(request.data)
 
-        #filter duplicates
+    login_form = forms.LoginForm(request.form)
+    registration_form = forms.RegistrationForm(request.form)
+    if request.method == 'POST' and login_form.validate() and login_form.username.data != "":
+        print("login form username: ", login_form.username.data)
+        thisUser = db.session.query(User).filter_by(username=login_form.username.data).first()
 
-        db.session.add(newUser)
-        db.session.commit()
-        printDatabase()
+        if thisUser == None:
+            print("That username is not registered")
+        else:
+            if thisUser.password == login_form.password.data:
+                #display thisUser's heroes
+                displayHeroesForUser(thisUser)
 
-        #allow them to choose their available heroes
-        #then display thisUser's heroes
+    elif request.method=='POST' and registration_form.validate():
+        newUser = User(username = registration_form.username.data, password = registration_form.password.data)
+
+        added = tryAddingUserToDB(newUser)
+
+        if added:
+            # printDatabase()
+
+            #allow them to choose their available heroes
+            displayHeroSelector()
+
+            #then display thisUser's heroes
+            displayHeroesForUser()
+        else:
+            pass
 
     return render_template('userprofile.html')
 
@@ -97,26 +109,36 @@ def render_a_template():
 
     return render_template('drafthelper.html', foo='')
 
-def addUserToDB(in_username, in_password):
+def displayHeroSelector():
+    pass
+
+def tryAddingUserToDB(in_username, in_password):
     user = User(username = in_username, password = in_password)
     if db.session.query(User).filter_by(username = in_username).first() != None:
         print("Database already contains that username")
+        return False
     else:
         db.session.add(user)
         db.session.commit()
+        return True
 
-def addHeroToDB(in_hero_name):
+def tryAddingHeroToDB(in_hero_name):
     hero = Hero(name = in_hero_name)
     if db.session.query(Hero).filter_by(name = in_hero_name).first() != None:
         print("Database already contains that hero")
+        return False
     else:
         db.session.add(hero)
         db.session.commit()
+        return True
 
 def addHeroForUser(in_hero_name, in_username):
     hero_entry = db.session.query(Hero).filter_by(name = in_hero_name)
     user_entry = db.session.query(User).filter_by(username = in_username)
     hero_entry.hero_user.append(user_entry)
+
+def displayHeroesForUser(in_user):
+    pass
 
 # #@flask_app.route('/todo', methods = ['GET'])
 # @flask_app.route('/heroes', methods = ['GET'])
@@ -158,7 +180,7 @@ def testDatabase():
     # db.session.delete(post_results[0])
     # db.session.commit()
 
-    printDatabase()
+    # printDatabase()
 
 
 def printDatabase():

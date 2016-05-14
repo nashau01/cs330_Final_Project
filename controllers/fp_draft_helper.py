@@ -1,5 +1,5 @@
 
-
+from model.heroes_graph import G
 
 # Keys are hero names as a string
 # Values are a list of dictionaries
@@ -11,19 +11,17 @@ all_heroes = []
 # - or -  Is this fundamentally a graph theory application? Vertices: Heroes, Edges: counter/synergy weights
 #
 
-
 class DraftInput:
     def __init__(self):
         self.allied_hero_selections = []
         self.enemy_hero_selections = []
         self.user_hero_preferences = {}
 
-
 class OptimalSelectionCalculator:
     def __init__(self, draft_input):
         self.draft_input = draft_input
 
-        # A dictionary :
+        # A dictionary:
         self.counter_weights = {}
         self.synergy_weights = {}
 
