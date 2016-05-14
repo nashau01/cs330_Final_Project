@@ -33,11 +33,9 @@ class User(db.Model):
     username = db.Column(db.String)
     password = db.Column(db.String)
 
-    #
-    #Q: How is a many to many relationship betwen Hero and User accomplished in flask_sqlalchemy
-    #
-    #heroes_owned = db.Column(?) #Many
-    #heroes_favorited = db.Column(?) #Many
+    #Extra: added for querying a user's heroes rather than just vise versa
+    hero_user = db.relationship('Hero', secondary=hero_user_table, backref=db.backref('hero', lazy='dynamic'))
+
 
 db.create_all()
 
@@ -92,32 +90,54 @@ def render_a_template():
 #     return jsonify(heroes=reslist)
 
 def testDatabase():
-    results = db.session.query(Hero).all()
+    pre_hero_query = db.session.query(Hero).all()
 
-    if len(results) == 0:
-        zagara = Hero(id = 1, name = 'Zagara')
-        db.session.add(zagara)
-        #db.session.delete(zagara)
-        uther = Hero(id = 2, name = 'Uther')
-        db.session.add(uther)
-        #db.session.delete(uther)
+    # if len(pre_results) == 0:
 
-        graymane = Hero(id = 3, name = 'Graymane')
-        db.session.add(graymane)
-        #db.session.delete(graymane)
+    # CREATING HEROES
+    # zagara = Hero(id = 1, name = 'Zagara')
+    # uther = Hero(id = 2, name = 'Uther')
+    # graymane = Hero(id = 3, name = 'Graymane')
 
-        db.session.commit()
+    # CREATING USERS
+    # bob = User(id = 1, username = "bobby")
+    # sarah = User(id = 2, username = "sarah")
+    # chris = User(id = 3, username = "chrissy")
 
-    # User.query.filter_by(username='admin').first()
-    # graymane = Hero.query().filter_by(name = "graymane").first()  ???
-    # or
-    # graymane = User.query.filter_by(username='admin').first()
-
-    # db.session.delete(results[1])
+    # ADDING TO THE DATABASE
+    # graymane = db.session.query(Hero).filter_by(name = 'Graymane').first()
+    # bob = db.session.query(User).filter_by(username = 'sarah').first()
+    # bob.hero_user.append(graymane)
+    # bob.hero_user.append(db.session.query(Hero).filter_by(name = 'Zagara').first())
+    #
+    # db.session.add(graymane)
+    # db.session.add(bob)
     # db.session.commit()
 
-    for a_hero in results:
-        print(a_hero.name)
+    post_hero_query = db.session.query(Hero).all()
+    post_user_query = db.session.query(User).all()
+
+    # DELETING FROM THE DATABASE
+    # db.session.delete(post_results[0])
+    # db.session.commit()
+
+    # PRINTING DATABASE CONTENT
+    printing_database = False
+    if (printing_database):
+        for a_hero in post_hero_query:
+            print(a_hero.name)
+            print("   has users: ")
+            for a_user in a_hero.hero_user:
+                print("   ", a_user.username, "\n")
+                # print("      has heroes: ")
+                # for hero2 in a_user.hero_user:
+                #     print("      ", hero2.name, "\n")
+
+        for a_user in post_user_query:
+            print(a_user.username)
+            print("   has heroes: ")
+            for a_hero in a_user.hero_user:
+                print("   ", a_hero.name, "\n")
 
 testDatabase()
 
