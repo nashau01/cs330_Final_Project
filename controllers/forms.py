@@ -1,11 +1,11 @@
-from wtforms import Form, BooleanField, StringField, validators, PasswordField
+from wtforms import Form, BooleanField, StringField, validators, PasswordField, HiddenField
 # from model.fp_flask_sql import *
 
 
 class RegistrationForm(Form):
     username = StringField('Username', [validators.Length(min=3, max=20)])
     password = PasswordField('Password', [validators.Length(min=5, max=20), validators.DataRequired()])
-    validator = StringField('SuperSecret', [validators.DataRequired], type='hidden', value='filled')
+    validator = HiddenField('SuperSecret', [validators.DataRequired], default="so Secret")
 
 
 class LoginForm(Form):

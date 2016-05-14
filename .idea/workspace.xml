@@ -4,8 +4,6 @@
     <list default="true" id="99974604-c120-4c35-98d8-d46c01456a14" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/forms.py" afterPath="$PROJECT_DIR$/controllers/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/heroSelector.js" afterPath="$PROJECT_DIR$/static/heroSelector.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/drafthelper.html" afterPath="$PROJECT_DIR$/templates/drafthelper.html" />
     </list>
     <ignored path="cs330_Final_Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/controllers/forms.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" column="100" selection-start-line="7" selection-start-column="100" selection-end-line="7" selection-end-column="100" />
+              <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -567,7 +565,14 @@
       <option name="project" value="LOCAL" />
       <updated>1463258957690</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fixed the forms">
+      <created>1463262106611</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1463262106611</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -642,7 +647,8 @@
     <MESSAGE value="Login page password fixed" />
     <MESSAGE value="WTForms now posts data to register user" />
     <MESSAGE value="WTForms now register user" />
-    <option name="LAST_COMMIT_MESSAGE" value="WTForms now register user" />
+    <MESSAGE value="fixed the forms" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the forms" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -916,7 +922,7 @@
     <entry file="file://$PROJECT_DIR$/controllers/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" column="100" selection-start-line="7" selection-start-column="100" selection-end-line="7" selection-end-column="100" />
+          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
           <folding />
         </state>
       </provider>
