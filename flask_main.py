@@ -54,30 +54,45 @@ class HeroUser(db.Model):
 #def index(task_id):
 #    return jsonify(greeting="<h1> Hello Task Id # {}  </h1>".format(task_id))
 
-@flask_app.route("/")
-def hello():
-    return render_template("splashPage.html")
-
 @flask_app.route("/register", methods=['GET', 'POST'])
 def register():
     form = forms.RegistrationForm(request.form)
-    if request.method == 'POST' and form.validate():
-        user = User(username = form.username.data, password = form.password.data)
-
-        db.session.add(user)
-        db.session.commit()
-        printDatabase()
 
     return render_template('register.html', form=form)
 
-@flask_app.route("/login")
-def login():
-    return render_template('login.html')
+@flask_app.route("/userProfile", methods=['GET', 'POST'])
+def profile():
+    form = forms.LoginForm(request.form)
+    form2 = forms.RegistrationForm(request.form)
+    if request.method == 'POST' and form.validate():
+        thisUser = db.session.query(User).filter_by(username=form.username.data).first()
+        #if thisUser.password == form.password.data:
+            #display thisUser's heroes
+            #pass
 
-@flask_app.route("/draft", methods=['POST'])
+    elif request.method=='POST' and form2.validate():
+        newUser = User(username=form2.username.data, password=form2.password.data)
+
+        #filter duplicates
+
+        db.session.add(newUser)
+        db.session.commit()
+        printDatabase()
+
+        #allow them to choose their available heroes
+        #then display thisUser's heroes
+
+    return render_template('userprofile.html')
+
+
+@flask_app.route("/")
+def login():
+    form = forms.LoginForm(request.form)
+    return render_template('login.html', form=form)
+
+@flask_app.route("/draft", methods=['GET','POST'])
 def render_a_template():
-    username = request.form['username']
-    password = request.form['password']
+    form = forms.RegistrationForm(request.form)
 
 
     return render_template('drafthelper.html', foo='')

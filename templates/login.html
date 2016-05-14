@@ -8,9 +8,11 @@
 
 
 
-<form method="POST" action="../controllers/forms.py">
-    <div> {{ form.username.label }}: {{ ProfileForm.username(class="css_class") }}</div>
-    <div> {{ form.password.label }}: {{ ProfileForm.password() }}</div>
+<form method="POST" action="/userProfile">
+    <div> {{ form.username.label }}: {{ form.username(class="css_class") }}</div>
+    <div> {{ form.password.label }}: {{ form.password() }}</div>
+    <p>Don't have an account yet? Register <a href="/register">here</a></p>
+    <input type="submit" value="Login">
 </form>
 
 {%  endblock %}
