@@ -5,7 +5,7 @@
 # Values are a list of dictionaries
     # 1) With
         # Keys are
-all_heroes = {}
+all_heroes = []
 
 #
 # - or -  Is this fundamentally a graph theory application? Vertices: Heroes, Edges: counter/synergy weights
