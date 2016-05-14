@@ -1,8 +1,7 @@
 heroSelector = new function () {
 
     var mainTb = document.querySelector("#heroList");
-    var mainTr = document.createElement("tr");
-    
+
     var nameArray = ["abathur", "anubarak", "artanis", "arthas", "azmodan", "brightwing", "chen",
     "chogall", "chromie", "dehaka", "diablo", "etc", "falstad", "gazlowe", "greymane", "illidan",
     "jaina", "johanna", "kaelthas", "kerrigan", "kharazim", "leoric", "li-ming",
@@ -11,14 +10,12 @@ heroSelector = new function () {
     "tassadar", "the-butcher", "the-lost-vikings", "thrall", "tracer", "tychus",
     "tyrael", "tyrande", "uther", "valla", "xul", "zagara", "zeratul"];
 
-    
-    
-    
     for (name in nameArray) {
-
+        var newTr = document.createElement("tr");
         var names = nameArray[name];
 
-        x += 1;
+        var img = document.createElement("img");
+
         img.src = "http://us.battle.net/heroes/static/images/heroes/busts/" + names + ".jpg";
         img.height = "40";
         img.width = "40";
@@ -26,9 +23,19 @@ heroSelector = new function () {
 
         var imageTd = document.createElement("td");
         imageTd.appendChild(img);
-        
-        var nameTd = document.createElement("td");
-        nameTd.innerHTML(names)
-    }
 
+        var nameTd = document.createElement("td");
+        nameTd.innerHTML = names;
+
+        var newInputTd = document.createElement("td");
+        var newInput = document.createElement("input");
+        newInput.type = checkbox;
+        newInput.value(names);
+
+        newTr.appendChild(imageTd);
+        newTr.appendChild(nameTd);
+        newInputTd.appendChild(newInput);
+        newTr.appendChild(newInputTd);
+        mainTb.appendChild(newTr);
+    }
 };
