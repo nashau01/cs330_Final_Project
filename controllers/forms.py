@@ -11,7 +11,6 @@ class RegistrationForm(Form):
 class LoginForm(Form):
     username = StringField('Username', [validators.DataRequired()])
     password = PasswordField('Password', [validators.DataRequired()])
-    validator = HiddenField('SuperSecret', [validators.DataRequired], default="so Secret")
 
 def register(request):
     form = RegistrationForm(request.POST)

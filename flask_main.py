@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 # from model.fp_flask_sql import *
 from flask_sqlalchemy import *
@@ -61,14 +61,35 @@ def register():
 
     return render_template('register.html', form=form)
 
+@flask_app.route("/registering", methods=['POST'])
+def registerUser():
+    registration_form = forms.RegistrationForm(request.form)
+    if request.method == 'POST' and registration_form.validate():
+        newUser = User(username=registration_form.username.data, password=registration_form.password.data)
+
+        added = tryAddingUserToDB(newUser)
+
+        if added:
+            # printDatabase()
+
+            # allow them to choose their available heroes
+            displayHeroSelector()
+
+            # then display thisUser's heroes
+            displayHeroesForUser()
+        else:
+            pass
+
+        return redirect("/userProfile")
+
+    return redirect("/")
+
+
 @flask_app.route("/userProfile", methods=['GET', 'POST'])
 def profile():
 
-    print(request.data)
-
     login_form = forms.LoginForm(request.form)
-    registration_form = forms.RegistrationForm(request.form)
-    if request.method == 'POST' and login_form.validate() and login_form.username.data != "":
+    if request.method == 'POST' and login_form.validate():
         print("login form username: ", login_form.username.data)
         thisUser = db.session.query(User).filter_by(username=login_form.username.data).first()
 
@@ -79,21 +100,6 @@ def profile():
                 #display thisUser's heroes
                 displayHeroesForUser(thisUser)
 
-    elif request.method=='POST' and registration_form.validate():
-        newUser = User(username = registration_form.username.data, password = registration_form.password.data)
-
-        added = tryAddingUserToDB(newUser)
-
-        if added:
-            # printDatabase()
-
-            #allow them to choose their available heroes
-            displayHeroSelector()
-
-            #then display thisUser's heroes
-            displayHeroesForUser()
-        else:
-            pass
 
     return render_template('userprofile.html')
 
