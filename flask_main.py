@@ -78,7 +78,7 @@ def registerUser():
             # then display thisUser's heroes
             displayHeroesForUser()
         else:
-            pass
+            return render_template('username_taken.html')
 
         return redirect("/userProfile")
 
@@ -94,7 +94,7 @@ def profile():
         thisUser = db.session.query(User).filter_by(username=login_form.username.data).first()
 
         if thisUser == None:
-            print("That username is not registered")
+            return render_template('login_fail.html')
         else:
             if thisUser.password == login_form.password.data:
                 #display thisUser's heroes
@@ -118,13 +118,11 @@ def render_a_template():
 def displayHeroSelector():
     pass
 
-def tryAddingUserToDB(in_username, in_password):
-    user = User(username = in_username, password = in_password)
-    if db.session.query(User).filter_by(username = in_username).first() != None:
-        print("Database already contains that username")
+def tryAddingUserToDB(in_user):
+    if db.session.query(User).filter_by(username = in_user.username).first() != None:
         return False
     else:
-        db.session.add(user)
+        db.session.add(in_user)
         db.session.commit()
         return True
 

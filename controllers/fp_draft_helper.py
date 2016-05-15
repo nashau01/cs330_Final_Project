@@ -25,15 +25,22 @@ class OptimalSelectionCalculator:
         self.counter_weights = {}
         self.synergy_weights = {}
 
+        self.findOptimalSelections()
+
     def findOptimalSelections(self):
-        self.counter_weights = findCounterAdvantages()
+        self.counter_weights = self.findCounterAdvantages()
 
-        self.synergy_weights = findSynergyAdvantages()
+        self.synergy_weights = self.findSynergyAdvantages()
 
-    def findCounterWeights(self):
+    def findCounterAdvantages(self):
         for a_hero in all_heroes:
             for an_enemy_hero in self.draft_input.enemy_hero_selections:
-                self.counter_weights[a_hero.name] = all
+                self.counter_weights[a_hero.name] += G.edge(a_hero, an_enemy_hero)["CA"]
+
+    def findSynergyAdvantages(self):
+        for a_hero in all_heroes:
+            for an_allied_hero in self.draft_input.allied_hero_selections:
+                self.counter_weights[a_hero.name] += G.edge(a_hero, an_allied_hero)["SA"]
 
 
 
