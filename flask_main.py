@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 # from model.fp_flask_sql import *
 from flask_sqlalchemy import *
 from controllers import forms
-from model.heroes_graph import *
+from heroes_graph import *
 
 flask_app = Flask(__name__)
 flask_app.debug = True
@@ -75,7 +75,6 @@ def registerUser():
             displayHeroSelector()
 
             # then display thisUser's heroes
-            displayHeroesForUser()
         else:
             return render_template('username_taken.html')
 
@@ -97,7 +96,7 @@ def profile():
         else:
             if thisUser.password == login_form.password.data:
                 #display thisUser's heroes
-                displayHeroesForUser(thisUser)
+                return redirect("/displayHeroesForUser/{}".format(thisUser.username))
 
     return render_template('userprofile.html')
 
@@ -240,6 +239,9 @@ def clearDatabase():
 
 
 if __name__ == '__main__':
+
+    print(all_heroes)
+
     testDatabase()
     printDatabase()
 

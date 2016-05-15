@@ -2,6 +2,7 @@ import networkx as nx
 G = nx.Graph()
 import random
 
+
 all_heroes = ["abathur", "anubarak", "artanis", "arthas", "azmodan", "brightwing", "chen",
     "chogall", "chromie", "dehaka", "diablo", "etc", "falstad", "gazlowe", "greymane", "illidan",
     "jaina", "johanna", "kaelthas", "kerrigan", "kharazim", "leoric", "li-ming",
@@ -34,7 +35,5 @@ for hero1 in all_heroes:
 def main():
     print(G.edge['artanis']['arthas'])
 
-
-
-
+main()
 
