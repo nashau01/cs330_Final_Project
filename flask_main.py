@@ -8,7 +8,6 @@ from model.heroes_graph import *
 flask_app = Flask(__name__)
 flask_app.debug = True
 
-
 #
 # BEGIN DATABASE SECTION #
 #
@@ -100,14 +99,26 @@ def profile():
                 #display thisUser's heroes
                 displayHeroesForUser(thisUser)
 
-
     return render_template('userprofile.html')
+
+
+@flask_app.route("/displayHeroesForUser/<string:in_username>")
+def displayHeroesForUser(in_username):
+    user = db.session.query(User).filter_by(username = in_username).first()
+    heroes = user.hero_user
+    hero_name_list = []
+    for a_hero in heroes:
+        hero_name_list.append(a_hero.name)
+
+    return jsonify({'heroes': hero_name_list})
 
 
 @flask_app.route("/")
 def login():
     form = forms.LoginForm(request.form)
+    printDatabase()
     return render_template('login.html', form=form)
+
 
 @flask_app.route("/draft", methods=['GET','POST'])
 def render_a_template():
@@ -158,33 +169,41 @@ def displayHeroesForUser(in_user):
 def testDatabase():
     pre_hero_query = db.session.query(Hero).all()
 
-    # if len(pre_results) == 0:
+    if len(pre_hero_query) == 0:
 
-    # CREATING HEROES
-    # zagara = Hero(id = 1, name = 'Zagara')
-    # uther = Hero(id = 2, name = 'Uther')
-    # graymane = Hero(id = 3, name = 'Graymane')
+        ### CREATING HEROES
+        zagara = Hero(id = 1, name = 'Zagara')
+        uther = Hero(id = 2, name = 'Uther')
+        graymane = Hero(id = 3, name = 'Graymane')
 
-    # CREATING USERS
-    # bob = User(id = 1, username = "bobby")
-    # sarah = User(id = 2, username = "sarah")
-    # chris = User(id = 3, username = "chrissy")
+        db.session.add(graymane)
+        db.session.add(uther)
+        db.session.add(zagara)
 
-    # ADDING TO THE DATABASE
-    # graymane = db.session.query(Hero).filter_by(name = 'Graymane').first()
-    # bob = db.session.query(User).filter_by(username = 'sarah').first()
-    # bob.hero_user.append(graymane)
-    # bob.hero_user.append(db.session.query(Hero).filter_by(name = 'Zagara').first())
-    #
-    # db.session.add(graymane)
-    # db.session.add(bob)
-    # db.session.commit()
+        ### CREATING USERS
+        bob = User(id = 1, username = "bobby")
+        sarah = User(id = 2, username = "sarah")
+        chris = User(id = 3, username = "chrissy")
 
-    # DELETING FROM THE DATABASE
-    # db.session.delete(post_results[0])
-    # db.session.commit()
+        db.session.add(bob)
+        db.session.add(sarah)
+        db.session.add(chris)
 
-    # printDatabase()
+        ### ADDING TO THE DATABASE
+        # graymane = db.session.query(Hero).filter_by(name = 'Graymane').first()
+        sarah = db.session.query(User).filter_by(username = 'sarah').first()
+        sarah.hero_user.append(graymane)
+        sarah.hero_user.append(zagara)
+        sarah.hero_user.append(uther)
+        # bob.hero_user.append(db.session.query(Hero).filter_by(name = 'Zagara').first())
+
+        db.session.commit()
+
+        ### DELETING FROM THE DATABASE
+        # db.session.delete(post_results[0])
+        # db.session.commit()
+
+        printDatabase()
 
 
 def printDatabase():
@@ -208,10 +227,26 @@ def printDatabase():
         for a_hero in a_user.hero_user:
             print("   ", a_hero.name, "\n")
 
-testDatabase()
+def clearDatabase():
+    users = User.query.all()
+    for u in users:
+        db.session.delete(u)
+
+    heroes = Hero.query.all()
+    for h in heroes:
+        db.session.delete(h)
+
+    db.session.commit()
+
 
 if __name__ == '__main__':
+    testDatabase()
+    printDatabase()
+
+    # clearDatabase()
+
     flask_app.run()
+
 
 
 
