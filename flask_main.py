@@ -12,7 +12,7 @@ flask_app.debug = True
 # BEGIN DATABASE SECTION #
 #
 
-flask_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/heroes2.db'
+flask_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/heroes.db'
 
 db = SQLAlchemy(flask_app)
 
@@ -100,8 +100,21 @@ def profile():
 
     return render_template('userprofile.html')
 
+@flask_app.route('/addHero/<string:in_username>/<string:in_hero_name>', methods = ['GET'])
+def addHeroFor(in_username, in_hero_name):
+    hero_entry = db.session.query(Hero).filter_by(name = in_hero_name).first()
+    user_entry = db.session.query(User).filter_by(username = in_username).first()
+    hero_entry.hero_user.append(user_entry)
 
-@flask_app.route("/displayHeroesForUser/<string:in_username>")
+    db.session.commit()
+
+    hero_list = []
+    for a_hero in user_entry.hero_user:
+        hero_list.append(a_hero.name)
+
+    return jsonify({"{}'s heroes".format(in_username): hero_list})
+
+@flask_app.route("/getHeroes/<string:in_username>", methods = ['GET'])
 def displayHeroesForUser(in_username):
     user = db.session.query(User).filter_by(username = in_username).first()
     heroes = user.hero_user
@@ -145,11 +158,6 @@ def tryAddingHeroToDB(in_hero_name):
         db.session.add(hero)
         db.session.commit()
         return True
-
-def addHeroForUser(in_hero_name, in_username):
-    hero_entry = db.session.query(Hero).filter_by(name = in_hero_name)
-    user_entry = db.session.query(User).filter_by(username = in_username)
-    hero_entry.hero_user.append(user_entry)
 
 def displayHeroesForUser(in_user):
     pass
@@ -202,7 +210,6 @@ def testDatabase():
         # db.session.delete(post_results[0])
         # db.session.commit()
 
-        printDatabase()
 
 
 def printDatabase():
@@ -224,7 +231,7 @@ def printDatabase():
         print(a_user.username)
         print("   has heroes: ")
         for a_hero in a_user.hero_user:
-            print("   ", a_hero.name, "\n")
+            print("   ", a_hero.name)
 
 def clearDatabase():
     users = User.query.all()
@@ -238,11 +245,11 @@ def clearDatabase():
     db.session.commit()
 
 
+
 if __name__ == '__main__':
+    # print(all_heroes)
 
-    print(all_heroes)
-
-    testDatabase()
+    # testDatabase()
     printDatabase()
 
     # clearDatabase()
