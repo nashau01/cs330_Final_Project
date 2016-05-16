@@ -1,0 +1,13 @@
+{% block optimal_selections %}
+
+{% for option in ordered_optimal_selections %}
+    <table>
+        <tr>
+            <td colspan=2>{{option}}</td>
+        </tr>
+    </table>
+
+
+{% endfor %}
+
+{% endblock %}

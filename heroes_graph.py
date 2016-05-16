@@ -13,11 +13,11 @@ all_heroes = ["abathur", "anubarak", "artanis", "arthas", "azmodan", "brightwing
 def getCounterAdvFor(hero1, hero2):
     # G.get_edge_data(hero1, hero2).counterAdv()
 
-    return random.randrange(-800, 800)
+    return random.randrange(-800, 800) * .01
 
 def getSynergyAdvFor(hero1, hero2):
     # G.get_edge_data(hero1, hero2).counterAdv()
-    return random.randrange(-800, 800)
+    return random.randrange(-800, 800) * .01
 
 for hero1 in all_heroes:
 #    if hero1 not in G.nodes():
