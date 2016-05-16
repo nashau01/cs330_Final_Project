@@ -4,9 +4,16 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_sqlalchemy import *
 from controllers import forms
 from heroes_graph import *
+from fp_draft_helper import HoTS_Drafter
 
 flask_app = Flask(__name__)
 flask_app.debug = True
+
+draft_dict = {
+    "allies" : [],
+    "enemies" : [],
+    "user_owned_heroes" : []
+}
 
 #
 # BEGIN DATABASE SECTION #
@@ -48,7 +55,6 @@ class HeroUser(db.Model):
 #
 # END DATABASE SECTION
 #
-
 
 #@flask_app.route('/todo/<int:task_id>')
 #def index(task_id):
@@ -124,6 +130,16 @@ def displayHeroesForUser(in_username):
 
     return jsonify({'heroes': hero_name_list})
 
+@flask_app.route("/addAlly/<string:in_hero_name>", methods = ['GET'])
+def addAlly(in_hero_name):
+    draft_dict['allies'].append(in_hero_name)
+    return "added ally"
+
+@flask_app.route("/addEnemy/<string:in_hero_name>", methods = ['GET'])
+def addEnemy(in_hero_name):
+    draft_dict['enemies'].append(in_hero_name)
+    return "added enemy"
+
 
 @flask_app.route("/")
 def login():
@@ -137,6 +153,11 @@ def render_a_template():
     form = forms.RegistrationForm(request.form)
 
     return render_template('drafthelper.html', foo='')
+
+@flask_app.route("/displayOptimalSelections", methods = ['GET'])
+def displayOptimalSelections():
+    drafter = HoTS_Drafter(draft_dict['allies'], draft_dict['enemies'], draft_dict['user_owned_heroes'])
+    return render_template("optimal_selections.html", ordered_list = drafter.getOrderedList())
 
 def displayHeroSelector():
     pass

@@ -14,11 +14,18 @@ class HoTS_Drafter:
 
         self.calculator = OptimalSelectionCalculator(self)
 
+        self.ordered_optimal_selections = self.calculator.ordered_optimal_selections
+
+
 class OptimalSelectionCalculator:
     def __init__(self, drafter):
         self.drafter = drafter
         self.advantages = {}
+        self.ordered_optimal_selections
+
         self.findOptimalSelections()
+        self.orderOptimalSelections()
+
 
     def findOptimalSelections(self):
         for a_hero in all_heroes:
@@ -38,8 +45,11 @@ class OptimalSelectionCalculator:
                         synergy_adv = G.edge[a_hero][an_allied_hero]["synergy_adv"]
                         self.advantages[a_hero] = self.advantages[a_hero] + synergy_adv
 
+    def orderOptimalSelections(self):
+        pass
 
-def main():
+
+def test():
     allies = ["uther", "zagara", "the-butcher"]
     enemies = ["kaelthas", "thrall", "illidan"]
     owned_heroes = ["johanna", "kaelthas", "kerrigan", "kharazim", "leoric", "li-ming",
@@ -51,4 +61,3 @@ def main():
     for a_hero_name in all_heroes:
         print("{} has a {} % advantage in this situation.".format(a_hero_name, drafter.calculator.advantages[a_hero_name]))
 
-main()
