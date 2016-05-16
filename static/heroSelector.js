@@ -17,8 +17,8 @@ heroSelector = new function () {
         var img = document.createElement("img");
 
         img.src = "http://us.battle.net/heroes/static/images/heroes/busts/" + names + ".jpg";
-        img.height = "40";
-        img.width = "40";
+        img.height = "50";
+        img.width = "50";
         img.className = "img-circle";
 
         var imageTd = document.createElement("td");
@@ -29,8 +29,10 @@ heroSelector = new function () {
 
         var newInputTd = document.createElement("td");
         var newInput = document.createElement("input");
-        newInput.type = checkbox;
-        newInput.value(names);
+        newInput.type = "checkbox";
+        newInput.setAttribute('value', names);
+        newInput.setAttribute('onClick', "heroProfileDisplay({{ username }});");
+
 
         newTr.appendChild(imageTd);
         newTr.appendChild(nameTd);

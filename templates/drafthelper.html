@@ -1,16 +1,32 @@
 {% extends "layout.html" %}
 
 {% block title %} Draft Helper {% endblock %}
+
 {% block content %}
 
 <h1>Select All Heros in the Order They Were Drafted</h1>
 
-<table id="heroList" border=None></table>
+<table id="heroList" border=None>
+</table>
+
+
 
 
 <script type="text/javascript" src="../static/heroSelector.js">
     window.onload = function() { heroSelector(); };
 </script>
 
+<script>
+    function heroProfileDisplay(username) {
+        window.alert(username);
+        var req = new XMLHttpRequest();
+        req.open("GET", "/getHeroes/" + username, true);
 
+        heroesList = JSON.parse(req.responseText);
+        window.alert(heroesList);
+    }
+</script>
 {% endblock %}
+
+
+

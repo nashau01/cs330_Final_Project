@@ -21,13 +21,13 @@
 </body>
     <script type="text/javascript">
 
-        function docheck() {
+        docheck = new function() {
             alert(this.id + " : " + this.checked);
             // PUT - /todo/<int:id>
             // Create JSON- {'done' : true}
             // xmlhttp.send(data)
 
-            var cb = this
+            var cb = this;
             var styleAsDone = function () {
                 console.log("done");
                 // get a handle on the text of the todo
@@ -36,37 +36,37 @@
             };
 
             if (this.checked == true) {
-                var req = new XMLHttpRequest()
-                req.open("PUT", "/todo/" + this.id, true)
+                var req = new XMLHttpRequest();
+                req.open("PUT", "/todo/" + this.id, true);
                 req.onreadystatechange = styleAsDone;
                 req.setRequestHeader("Content-type", "application/json");
 
-                var data = {}
-                data.done = true
+                var data = {};
+                data.done = true;
                 req.send(JSON.stringify(data))
             }
-        }
+        };
 
-        function showtodos() {
+        showtodos = new function() {
             console.log("hello");
-            var obj = new XMLHttpRequest()
+            var obj = new XMLHttpRequest();
             obj.open("GET", "/todo", true); <!-- the 'true' is to make this call asychronous -->
             obj.onreadystatechange = function () {
                 if (obj.readyState == 4 && obj.status == 200) {
                     tododb = JSON.parse(obj.responseText);
                     ol = document.querySelector("#todolist");
                     for(i in tododb.tasklist) {
-                        li = document.createElement("li")
-                        li.innerHTML = tododb.tasklist[i].task
+                        li = document.createElement("li");
+                        li.innerHTML = tododb.tasklist[i].task;
                         ol.appendChild(li);
                     }
                 }
-            }
+            };
             obj.send()
-        }
+        };
 
-        function showCheckboxes() {
-            var obj = new XMLHttpRequest()
+        showCheckboxes = new function() {
+            var obj = new XMLHttpRequest();
             obj.open("GET", "/todo", true); <!-- the 'true' is to make this call asychronous -->
             obj.onreadystatechange = function () {
                 if (obj.readyState == 4 && obj.status == 200) {
@@ -96,7 +96,7 @@
                 }
             };
             obj.send()
-        }
+        };
 
     </script>
 <button onclick="showCheckboxes();">Test Todo</button>

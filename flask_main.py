@@ -21,6 +21,8 @@ draft_dict = {
 
 flask_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/heroes.db'
 
+currentUser = ""
+
 db = SQLAlchemy(flask_app)
 
 hero_user_table = db.Table('hero_user',
@@ -55,6 +57,7 @@ class HeroUser(db.Model):
 #
 # END DATABASE SECTION
 #
+
 
 #@flask_app.route('/todo/<int:task_id>')
 #def index(task_id):
@@ -101,15 +104,20 @@ def profile():
             return render_template('login_fail.html')
         else:
             if thisUser.password == login_form.password.data:
+                currentUser = login_form.username.data
                 #display thisUser's heroes
-                return redirect("/displayHeroesForUser/{}".format(thisUser.username))
+                return redirect("/draft")
 
-    return render_template('userprofile.html')
+    return redirect('/')
 
 @flask_app.route('/addHero/<string:in_username>/<string:in_hero_name>', methods = ['GET'])
 def addHeroFor(in_username, in_hero_name):
+
     hero_entry = db.session.query(Hero).filter_by(name = in_hero_name).first()
     user_entry = db.session.query(User).filter_by(username = in_username).first()
+
+    print(hero_entry, user_entry)
+
     hero_entry.hero_user.append(user_entry)
 
     db.session.commit()
@@ -119,6 +127,7 @@ def addHeroFor(in_username, in_hero_name):
         hero_list.append(a_hero.name)
 
     return jsonify({"{}'s heroes".format(in_username): hero_list})
+
 
 @flask_app.route("/getHeroes/<string:in_username>", methods = ['GET'])
 def displayHeroesForUser(in_username):
@@ -151,8 +160,11 @@ def login():
 @flask_app.route("/draft", methods=['GET','POST'])
 def render_a_template():
     form = forms.RegistrationForm(request.form)
+    printDatabase()
+    #tryAddingHeroToDB("Uther")
+    #addHeroFor("Evan12", "Uther")
 
-    return render_template('drafthelper.html', foo='')
+    return render_template('drafthelper.html', username=currentUser)
 
 @flask_app.route("/displayOptimalSelections", methods = ['GET'])
 def displayOptimalSelections():
@@ -264,7 +276,6 @@ def clearDatabase():
         db.session.delete(h)
 
     db.session.commit()
-
 
 
 if __name__ == '__main__':
