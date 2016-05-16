@@ -10,8 +10,8 @@ flask_app = Flask(__name__)
 flask_app.debug = True
 
 draft_dict = {
-    "allies" : [],
-    "enemies" : [],
+    "allies" : ["zagara", "uther", "greymane"],
+    "enemies" : ["the-butcher", "lili"],
     "user_owned_heroes" : []
 }
 
@@ -167,7 +167,9 @@ def render_a_template():
 @flask_app.route("/displayOptimalSelections", methods = ['GET'])
 def displayOptimalSelections():
     drafter = HoTS_Drafter(draft_dict['allies'], draft_dict['enemies'], draft_dict['user_owned_heroes'])
-    return render_template("optimal_selections.html", ordered_list = drafter.getOrderedList())
+    print(drafter.ordered_optimal_selections)
+
+    return render_template("optimal_selections.html", ordered_optimal_selections = drafter.ordered_optimal_selections)
 
 def displayHeroSelector():
     pass
@@ -282,7 +284,7 @@ if __name__ == '__main__':
     # print(all_heroes)
 
     # testDatabase()
-    printDatabase()
+    # printDatabase()
 
     # clearDatabase()
 

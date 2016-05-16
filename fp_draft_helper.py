@@ -1,5 +1,7 @@
 
 from heroes_graph import G, all_heroes
+import operator
+
 
 #
 # Vertices: Heroes, Edges: counter/synergy weights
@@ -16,12 +18,16 @@ class HoTS_Drafter:
 
         self.ordered_optimal_selections = self.calculator.ordered_optimal_selections
 
+    def getOptimalSelectionsDict(self, numberOfSelectionsReturned):
+        pass
+
+
 
 class OptimalSelectionCalculator:
     def __init__(self, drafter):
         self.drafter = drafter
         self.advantages = {}
-        self.ordered_optimal_selections
+        self.ordered_optimal_selections = []
 
         self.findOptimalSelections()
         self.orderOptimalSelections()
@@ -46,7 +52,10 @@ class OptimalSelectionCalculator:
                         self.advantages[a_hero] = self.advantages[a_hero] + synergy_adv
 
     def orderOptimalSelections(self):
-        pass
+        self.ordered_optimal_selections = \
+            sorted(self.advantages.items(), key=operator.itemgetter(1))
+        self.ordered_optimal_selections.reverse()
+
 
 
 def test():
@@ -61,3 +70,7 @@ def test():
     for a_hero_name in all_heroes:
         print("{} has a {} % advantage in this situation.".format(a_hero_name, drafter.calculator.advantages[a_hero_name]))
 
+    for a_tuple in drafter.ordered_optimal_selections:
+        print(a_tuple)
+
+# test()
