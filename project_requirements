@@ -8,25 +8,26 @@ To earn an A on the project you will need to [complete the following].
 
 You must have at least three views (Think templates)
     1) Create a username and password.                                            - Evan    √
-    2) Selecting owned and favorite heroes, possible from a list of checkboxes.   - Evan
+    2) Selecting owned and favorite heroes, possible from a list of checkboxes.   - Evan    ->
     3) The draft helper tool — input heroes already selected in the draft.        - Austin / Evan  ->
 
 You must have at least three controllers (Think python functions with @app.route decorators)
-   1) Store username and password in the database.                                                                - Evan / Austin   ->
+   1) Store username and password in the database.                                                                - Evan / Austin   √
    2) Store owned and favorited heroes in the database.                                                           - Evan / Austin   ->
-   3) Compute the optimal hero selections as part of the draft tool and return that list for display to the user. - Austin
+   3) Compute the optimal hero selections as part of the draft tool and return that list for display to the user. - Austin          ->/√
 
 Evan / Austin - You must use the SqlAlchemy plugin and create a database with 3-4 tables. These tables should incorporate a one to many relationship in some way, or they may have a many to many relationship.
-    1) Hero
-    2) User
+    1) Hero √
+    2) User √
 
-Austin - You should deploy your project on Heroku, appengine, or some other free hosting site so that it is freely accessible and not on the Luther network.
+Austin - You should deploy your project on Heroku, appengine, or some other free hosting site so that it is freely accessible and not on the Luther network. ->/√
 
-Evan - You should incorporate the WTForms module into your application for processing form data.
+Evan - You should incorporate the WTForms module into your application for processing form data. √
 
-Evan - You should provide a small AJAX API for some aspect of the project that you use in your web pages. Or you may incorporate some other more advanced Flask Plugin that you OK with me.
+Evan - You should provide a small AJAX API for some aspect of the project that you use in your web pages.  ->
+Or you may incorporate some other more advanced Flask Plugin that you OK with me.
 
-Evan/Austin - Your program must use the bootstrap templates, and you must make an attempt to make it look aesthetically nice.
+Evan/Austin - Your program must use the bootstrap templates, and you must make an attempt to make it look aesthetically nice. √
     Build on examples in index and base.html, use W3schools.com for reference
 
 You may work in teams of 2 on this project, unless you are doing the blogging application.

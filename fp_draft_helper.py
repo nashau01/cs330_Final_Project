@@ -17,9 +17,7 @@ class HoTS_Drafter:
 class OptimalSelectionCalculator:
     def __init__(self, drafter):
         self.drafter = drafter
-
         self.advantages = {}
-
         self.findOptimalSelections()
 
     def findOptimalSelections(self):
