@@ -18,10 +18,7 @@ draft_dict = {
 #
 # BEGIN DATABASE SECTION #
 #
-
 flask_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/heroes.db'
-
-currentUser = ""
 
 db = SQLAlchemy(flask_app)
 
@@ -94,16 +91,17 @@ def registerUser():
 
 @flask_app.route("/userProfile", methods=['GET', 'POST'])
 def profile():
-
     login_form = forms.LoginForm(request.form)
+
     if request.method == 'POST' and login_form.validate():
         print("login form username: ", login_form.username.data)
         thisUser = db.session.query(User).filter_by(username=login_form.username.data).first()
 
-        if thisUser == None:
+        if thisUser is None:
             return render_template('login_fail.html')
         else:
             if thisUser.password == login_form.password.data:
+                global currentUser
                 currentUser = login_form.username.data
                 #display thisUser's heroes
                 return redirect("/draft")
@@ -279,6 +277,8 @@ def clearDatabase():
 
 
 if __name__ == '__main__':
+
+    currentUser = ""
     # print(all_heroes)
 
     # testDatabase()

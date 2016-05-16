@@ -4,28 +4,30 @@
 
 {% block content %}
 
-<h1>Select All Heros in the Order They Were Drafted</h1>
+    <h1>Select All Heros in the Order They Were Drafted</h1>
 
-<table id="heroList" border=None>
-</table>
+    <div> {{ username }}</div>
+    
+    <table id="heroList" border=None>
+    <tr><td><input title="arthus" type="checkbox" onclick=heroProfileDisplay("{{username}}"); /></td></tr>
+    </table>
 
 
 
+    <script type="text/javascript" src="../static/heroSelector.js">
+        window.onload = function() { heroSelector() };
+    </script>
 
-<script type="text/javascript" src="../static/heroSelector.js">
-    window.onload = function() { heroSelector(); };
-</script>
+    <script type="text/javascript">
+        function heroProfileDisplay(user) {
+            window.alert(user);
+            var req = new XMLHttpRequest();
+            req.open("GET", "/getHeroes/" + user, true);
 
-<script>
-    function heroProfileDisplay(username) {
-        window.alert(username);
-        var req = new XMLHttpRequest();
-        req.open("GET", "/getHeroes/" + username, true);
-
-        heroesList = JSON.parse(req.responseText);
-        window.alert(heroesList);
-    }
-</script>
+            heroesList = JSON.parse(req.responseText);
+            window.alert(heroesList);
+        }
+    </script>
 {% endblock %}
 
 

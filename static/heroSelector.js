@@ -31,7 +31,7 @@ heroSelector = new function () {
         var newInput = document.createElement("input");
         newInput.type = "checkbox";
         newInput.setAttribute('value', names);
-        newInput.setAttribute('onClick', "heroProfileDisplay({{ username }});");
+        newInput.setAttribute('onClick', "heroProfileDisplay({{username}});");
 
 
         newTr.appendChild(imageTd);
