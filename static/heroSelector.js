@@ -64,22 +64,19 @@ heroSelector = new function () {
 
 
 function doAllyCheck() {
-    //alert(this.id + " : " + this.checked);
-    // PUT - /todo/<int:id>
-    // Create JSON- {'done' : true}
-    // xmlhttp.send(data)
 
     if (this.checked == true) {
         var req = new XMLHttpRequest();
-        window.alert(this.value);
         req.open("GET", "/addAlly/" + this.value, true);
         req.setRequestHeader("Content-type", "application/json");
         req.onreadystatechange = function() {
             if(req.readyState == 4 && req.status == 200) {
                 optArray = [];
+                x = 1;
                 optDict = JSON.parse(req.responseText);
                 for(hero in optDict) {
-                    optArray.append(optDict.pop());
+                    optArray.push(optDict[x]);
+                    x += 1;
                 }
                 window.alert(optArray);
             }
@@ -89,22 +86,19 @@ function doAllyCheck() {
 }
 
 function doEnemyCheck() {
-    //alert(this.id + " : " + this.checked);
-    // PUT - /todo/<int:id>
-    // Create JSON- {'done' : true}
-    // xmlhttp.send(data)
 
     if (this.checked == true) {
         var req = new XMLHttpRequest();
-        window.alert(this.value);
         req.open("GET", "/addEnemy/" + this.value, true);
         req.setRequestHeader("Content-type", "application/json");
         req.onreadystatechange = function() {
             if(req.readyState == 4 && req.status == 200) {
                 optArray = [];
+                x = 1;
                 optDict = JSON.parse(req.responseText);
                 for(hero in optDict) {
-                    optArray.append(optDict.pop());
+                    optArray.push(optDict[x]);
+                    x += 1;
                 }
                 window.alert(optArray);
             }
