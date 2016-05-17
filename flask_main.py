@@ -151,7 +151,7 @@ def addAlly(in_hero_name):
 @flask_app.route("/addEnemy/<string:in_hero_name>", methods = ['GET'])
 def addEnemy(in_hero_name):
     draft_dict['enemies'].append(in_hero_name)
-    return displayOptimalSelections
+    return displayOptimalSelections()
 
 @flask_app.route("/")
 def login():
