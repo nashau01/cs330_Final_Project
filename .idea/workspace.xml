@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="99974604-c120-4c35-98d8-d46c01456a14" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask_main.py" afterPath="$PROJECT_DIR$/flask_main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/heroSelector.js" afterPath="$PROJECT_DIR$/static/heroSelector.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/drafthelper.html" afterPath="$PROJECT_DIR$/templates/drafthelper.html" />
     </list>
     <ignored path="cs330_Final_Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,8 +72,8 @@
       <file leaf-file-name="heroSelector.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/heroSelector.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="85" column="39" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
+            <state relative-caret-position="450">
+              <caret line="99" column="34" selection-start-line="99" selection-start-column="34" selection-end-line="99" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -648,7 +646,14 @@
       <option name="project" value="LOCAL" />
       <updated>1463443420468</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="front end for optimal array">
+      <created>1463458921825</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1463458921825</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -729,7 +734,8 @@
     <MESSAGE value="trying to fix this parameter issue" />
     <MESSAGE value="trying to fix safari checkboxes" />
     <MESSAGE value="got object" />
-    <option name="LAST_COMMIT_MESSAGE" value="got object" />
+    <MESSAGE value="front end for optimal array" />
+    <option name="LAST_COMMIT_MESSAGE" value="front end for optimal array" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -993,14 +999,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flask_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="134" column="28" selection-start-line="134" selection-start-column="28" selection-end-line="134" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/drafthelper.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1009,10 +1007,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/flask_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="134" column="28" selection-start-line="134" selection-start-column="28" selection-end-line="134" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/heroSelector.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="85" column="39" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
+        <state relative-caret-position="450">
+          <caret line="99" column="34" selection-start-line="99" selection-start-column="34" selection-end-line="99" selection-end-column="34" />
           <folding />
         </state>
       </provider>

@@ -69,8 +69,6 @@ function doAllyCheck() {
     // Create JSON- {'done' : true}
     // xmlhttp.send(data)
 
-    var cb = this;
-
     if (this.checked == true) {
         var req = new XMLHttpRequest();
         window.alert(this.value);
@@ -81,17 +79,39 @@ function doAllyCheck() {
                 optArray = [];
                 optDict = JSON.parse(req.responseText);
                 for(hero in optDict) {
-                    optArray.append(optDict[hero])
+                    optArray.append(optDict.pop());
                 }
                 window.alert(optArray);
             }
         };
-
         req.send()
     }
 }
 
+function doEnemyCheck() {
+    //alert(this.id + " : " + this.checked);
+    // PUT - /todo/<int:id>
+    // Create JSON- {'done' : true}
+    // xmlhttp.send(data)
 
+    if (this.checked == true) {
+        var req = new XMLHttpRequest();
+        window.alert(this.value);
+        req.open("GET", "/addEnemy/" + this.value, true);
+        req.setRequestHeader("Content-type", "application/json");
+        req.onreadystatechange = function() {
+            if(req.readyState == 4 && req.status == 200) {
+                optArray = [];
+                optDict = JSON.parse(req.responseText);
+                for(hero in optDict) {
+                    optArray.append(optDict.pop());
+                }
+                window.alert(optArray);
+            }
+        };
+        req.send()
+    }
+}
 
 
 /*<script type="text/javascript">
