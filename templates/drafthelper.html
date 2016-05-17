@@ -23,9 +23,13 @@
             window.alert(user);
             var req = new XMLHttpRequest();
             req.open("GET", "/getHeroes/" + user, true);
-
-            heroesList = JSON.parse(req.responseText);
-            window.alert(heroesList);
+            req.onreadystatechange = function() {
+                if (req.readyState == 4 && req.status == 200) {
+                    heroesList = JSON.parse(req.responseText);
+                    window.alert(heroesList);
+                }
+            };
+            req.send()
         }
     </script>
 {% endblock %}
