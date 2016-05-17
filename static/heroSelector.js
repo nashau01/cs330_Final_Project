@@ -78,7 +78,15 @@ function doAllyCheck() {
                     optArray.push(optDict[x]);
                     x += 1;
                 }
-                window.alert(optArray);
+
+                thisstr = "";
+                for(i in optArray) {
+                    z = parseInt(i) + 1;
+                    thisstr += z + ": " + optArray[i];
+                    thisstr += "<br>";
+                }
+
+                document.getElementById('topfive').innerHTML = "Your top five hero choices are: " + "<br>" + thisstr;
             }
         };
         req.send()
@@ -100,7 +108,14 @@ function doEnemyCheck() {
                     optArray.push(optDict[x]);
                     x += 1;
                 }
-                window.alert(optArray);
+                thisstr = "";
+                for(i in optArray) {
+                    z = parseInt(i) + 1;
+                    thisstr += z + ": " + optArray[i];
+                    thisstr += "<br>";
+                }
+
+                document.getElementById('topfive').innerHTML = "Your top five hero choices are: " + "<br>" + thisstr;
             }
         };
         req.send()
