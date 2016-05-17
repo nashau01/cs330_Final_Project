@@ -30,7 +30,7 @@ heroSelector = new function () {
         var alliedNameTd = document.createElement("td");
         alliedNameTd.innerHTML = names;
         var enemyNameTd = document.createElement("td");
-        enemyNameTd.innerHTML = names;
+        enemyNameTd.innerHTML = "<pre> " + names + "</pre>";
 
 
         var newAlliedInputTd = document.createElement("td");
@@ -82,11 +82,16 @@ function doAllyCheck() {
                 thisstr = "";
                 for(i in optArray) {
                     z = parseInt(i) + 1;
-                    thisstr += z + ": " + optArray[i];
-                    thisstr += "<br>";
+
+                    rankTd = document.getElementById('r' + z + '_td_rank');
+                    rankTd.innerHTML = "" + z;
+
+                    nameTd = document.getElementById('r' + z + '_td_name');
+                    nameTd.innerHTML = optArray[i];
                 }
 
-                document.getElementById('topfive').innerHTML = "Your top five hero choices are: " + "<br>" + thisstr;
+
+
             }
         };
         req.send()
@@ -111,11 +116,19 @@ function doEnemyCheck() {
                 thisstr = "";
                 for(i in optArray) {
                     z = parseInt(i) + 1;
-                    thisstr += z + ": " + optArray[i];
-                    thisstr += "<br>";
+
+                    rankTd = document.getElementById('r' + z + '_td_rank');
+                    rankTd.innerHTML = "" + z;
+
+                    nameTd = document.getElementById('r' + z + '_td_name');
+                    nameTd.innerHTML = optArray[i];
+
+
+                    //thisstr += z + ": " + optArray[i];
+                    //thisstr += "<br>";
                 }
 
-                document.getElementById('topfive').innerHTML = "Your top five hero choices are: " + "<br>" + thisstr;
+
             }
         };
         req.send()

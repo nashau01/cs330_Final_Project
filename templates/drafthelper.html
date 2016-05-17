@@ -10,13 +10,53 @@
 
 {% block content %}
 
-    <h1 align="center">Select Drafted Heroes</h1>
+    <h1 align="center">HoTS Draft Helper</h1>
+    <div class="row"></div>
+        <p class="col-md-2"></p>
+        <h4 class="col-md-8" align="center" > Enter drafted heroes using
+            the checkboxes below. Optimal selection recommendations
+            are displayed in real-time for each new input. </h4>
+        <p class="col-md-2"></p>
+    </div>
 
-    <div id="topfive" align="center"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h3> Select Drafted Heroes </h3>
+            <table id="heroList" border=None align="center">
+                <th> <td><pre> Allies </pre></td> <td></td><td></td><td><pre> Enemies </pre></td></th>
+            </table>
+        </div>
+        <div class="col-sm-6" align="center">
+          <h3>Top 5 Draft Options </h3>
+            <table id="topfive" border="black">
+                <tr>
+                    <td class="optimal_selection" id="r1_td_rank"></td>
+                    <td class="optimal_selection" id="r1_td_name" bgcolor="rgb(100,250,100)"></td>
+                </tr>
+                <tr>
+                    <td class="optimal_selection" id="r2_td_rank"></td>
+                    <td class="optimal_selection" id="r2_td_name" bgcolor="#7fffd4"></td>
+                </tr>
+                <tr>
+                    <td class="optimal_selection" id="r3_td_rank"></td>
+                    <td class="optimal_selection" id="r3_td_name" bgcolor="#8fbc8f"></td>
+                </tr>
+                <tr>
+                    <td class="optimal_selection" id="r4_td_rank"></td>
+                    <td class="optimal_selection" id="r4_td_name"></td>
+                </tr>
+                <tr>
+                    <td class="optimal_selection" id="r5_td_rank"></td>
+                    <td class="optimal_selection" id="r5_td_name"></td>
+                </tr>
+            </table>
+        </div>
+      </div>
+    </div>
 
-    <table id="heroList" border=None align="center">
-        <th> <td><pre> Allies </pre></td> <td></td><td></td><td><pre> Enemies </pre></td></th>
-    </table>
+
+
 
 
 

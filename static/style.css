@@ -4,3 +4,30 @@ input[type=checkbox] {
 input[type=radio] {
   -webkit-appearance:radio;
 }
+
+td.optimal_selection {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+td#r1_td_name {
+  background-color: rgb(130, 250, 100);
+}
+
+td#r2_td_name {
+  background-color: rgb(150, 240, 120);
+}
+
+td#r3_td_name {
+  background-color: rgb(180, 230, 120);
+}
+
+td#r4_td_name {
+  background-color: rgb(200, 210, 120);
+}
+
+td#r5_td_name {
+  background-color: rgb(220, 200, 130);
+}
