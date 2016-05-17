@@ -12,6 +12,10 @@ td.optimal_selection {
   padding-top: 5px;
 }
 
+ul {
+    list-style-type: none;
+}
+
 td#r1_td_name {
   background-color: rgb(130, 250, 100);
 }
