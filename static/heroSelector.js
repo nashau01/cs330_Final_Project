@@ -11,33 +11,55 @@ heroSelector = new function () {
     "tyrael", "tyrande", "uther", "valla", "xul", "zagara", "zeratul"];
 
     for (name in nameArray) {
+
         var newTr = document.createElement("tr");
         var names = nameArray[name];
 
         var img = document.createElement("img");
 
         img.src = "http://us.battle.net/heroes/static/images/heroes/busts/" + names + ".jpg";
-        img.height = "50";
-        img.width = "50";
+        img.height = "90";
+        img.width = "75";
         img.className = "img-circle";
 
-        var imageTd = document.createElement("td");
-        imageTd.appendChild(img);
-
-        var nameTd = document.createElement("td");
-        nameTd.innerHTML = names;
-
-        var newInputTd = document.createElement("td");
-        var newInput = document.createElement("input");
-        newInput.type = "checkbox";
-        newInput.setAttribute('value', names);
-        newInput.setAttribute('onClick', "heroProfileDisplay({{username}});");
+        var alliedImageTd = document.createElement("td");
+        alliedImageTd.appendChild(img);
+        var enemyImageTd = document.createElement("td");
+        enemyImageTd.appendChild(img);
 
 
-        newTr.appendChild(imageTd);
-        newTr.appendChild(nameTd);
-        newInputTd.appendChild(newInput);
-        newTr.appendChild(newInputTd);
+        var alliedNameTd = document.createElement("td");
+        alliedNameTd.innerHTML = names;
+        var enemyNameTd = document.createElement("td");
+        enemyNameTd.innerHTML = names;
+
+
+        var newAlliedInputTd = document.createElement("td");
+        var newEnemyInputTd = document.createElement("td");
+        var newAlliedInput = document.createElement("input");
+        var newEnemyInput = document.createElement("input");
+        newAlliedInput.type = 'checkbox';
+        newEnemyInput.type = 'checkbox';
+        newAlliedInput.setAttribute('value', names);
+        newEnemyInput.setAttribute('value', names);
+        newAlliedInput.setAttribute('onClick', "heroProfileDisplay({{username}});");
+        newEnemyInput.setAttribute('onClick', "heroProfileDisplay({{username}});");
+
+        var spacerTd = document.createElement("td");
+        newTr.appendChild(spacerTd);
+
+        newAlliedInputTd.appendChild(newAlliedInput);
+        newTr.appendChild(newAlliedInputTd);
+
+        //newTr.appendChild(alliedImageTd);
+        //newTr.appendChild(alliedNameTd);
+
+        newTr.appendChild(enemyImageTd);
+        newTr.appendChild(enemyNameTd);
+
+        newEnemyInputTd.appendChild(newEnemyInput);
+        newTr.appendChild(newEnemyInputTd);
+
         mainTb.appendChild(newTr);
     }
 };

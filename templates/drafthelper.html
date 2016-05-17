@@ -4,12 +4,13 @@
 
 {% block content %}
 
-    <h1>Select All Heros in the Order They Were Drafted</h1>
+    <h1 align="center">Select Drafted Heroes</h1>
 
     <div> {{ username }}</div>
-    
-    <table id="heroList" border=None>
-    <tr><td><input title="arthus" type="checkbox" onclick=heroProfileDisplay("{{username}}"); /></td></tr>
+
+    <table id="heroList" border=None align="center">
+        <th> <td><pre> Allies </pre></td> <td></td><td></td><td><pre> Enemies </pre></td></th>
+        <tr><td><input title="arthus" type="checkbox" onclick=heroProfileDisplay("{{username}}"); /></td></tr>
     </table>
 
 

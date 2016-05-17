@@ -34,5 +34,4 @@ for hero1 in all_heroes:
 def main():
     print(G.edge['artanis']['arthas'])
 
-main()
 
