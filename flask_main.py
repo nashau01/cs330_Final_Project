@@ -140,6 +140,7 @@ def displayHeroesForUser(in_username):
 @flask_app.route("/addAlly/<string:in_hero_name>", methods = ['GET'])
 def addAlly(in_hero_name):
     draft_dict['allies'].append(in_hero_name)
+    print("YAYYAYAYAYAYAYAYAYAYA")
     return "added ally"
 
 @flask_app.route("/addEnemy/<string:in_hero_name>", methods = ['GET'])

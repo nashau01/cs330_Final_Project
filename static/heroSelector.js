@@ -49,6 +49,7 @@ heroSelector = new function () {
         newTr.appendChild(spacerTd);
 
         newAlliedInputTd.appendChild(newAlliedInput);
+        newAlliedInputTd.setAttribute("onclick", "doAllyCheck();");
         newTr.appendChild(newAlliedInputTd);
 
         //newTr.appendChild(alliedImageTd);
@@ -63,3 +64,26 @@ heroSelector = new function () {
         mainTb.appendChild(newTr);
     }
 };
+
+function doAllyCheck() {
+    //alert(this.id + " : " + this.checked);
+    // PUT - /todo/<int:id>
+    // Create JSON- {'done' : true}
+    // xmlhttp.send(data)
+
+    var cb = this;
+
+    if (this.checked == true) {
+        var req = new XMLHttpRequest();
+        req.open("PUT", "/addAlly/" + this.value, true);
+        req.setRequestHeader("Content-type", "application/json");
+
+        //var data = {}     //unused?
+        //data.done = true  //unused?
+
+        req.send()
+    }
+}
+
+// function doEnemyCheck() {
+// }
