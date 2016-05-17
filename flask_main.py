@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_sqlalchemy import *
 from controllers import forms
 from heroes_graph import *
+from heroes_graph import all_heroes
 from fp_draft_helper import HoTS_Drafter
 
 flask_app = Flask(__name__)
@@ -18,7 +19,7 @@ draft_dict = {
 #
 # BEGIN DATABASE SECTION #
 #
-flask_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/heroes.db'
+flask_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/heroes4.db'
 
 db = SQLAlchemy(flask_app)
 
@@ -127,7 +128,7 @@ def addHeroFor(in_username, in_hero_name):
     for a_hero in user_entry.hero_user:
         hero_list.append(a_hero.name)
 
-    return jsonify({"{}'s heroes".format(in_username): hero_list})
+    return redirect("/userProfile")
 
 
 @flask_app.route("/getHeroes/<string:in_username>", methods = ['GET'])
@@ -261,7 +262,11 @@ def testDatabase():
         # db.session.delete(post_results[0])
         # db.session.commit()
 
-
+def addAllHeroesToDB():
+    for i in range(len(all_heroes)):
+        hero = Hero(id = i, name = all_heroes[i])
+        db.session.add(hero)
+        db.session.commit()
 
 def printDatabase():
     post_hero_query = db.session.query(Hero).all()
@@ -302,6 +307,10 @@ if __name__ == '__main__':
     # print(all_heroes)
 
     #testDatabase()
+    # printDatabase()
+
+    if (len(db.session.query(Hero).all()) == 0):
+        addAllHeroesToDB()
     # printDatabase()
 
     # clearDatabase()
