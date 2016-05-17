@@ -106,6 +106,9 @@ def profile():
                 #display thisUser's heroes
                 return redirect("/draft")
 
+    if not currentUser == "":
+        return render_template("userprofile.html")
+
     return redirect('/')
 
 @flask_app.route('/addHero/<string:in_username>/<string:in_hero_name>', methods = ['GET'])
@@ -131,11 +134,13 @@ def addHeroFor(in_username, in_hero_name):
 def displayHeroesForUser(in_username):
     user = db.session.query(User).filter_by(username = in_username).first()
     heroes = user.hero_user
-    hero_name_list = []
+    #hero_name_list = []
+    hero_name_dict = {}
     for a_hero in heroes:
-        hero_name_list.append(a_hero.name)
+        hero_name_dict[a_hero.name] = a_hero.name
 
-    return jsonify({'heroes': hero_name_list})
+    #return jsonify({'heroes': hero_name_list})
+    return jsonify(hero_name_dict)
 
 @flask_app.route("/addAlly/<string:in_hero_name>", methods = ['GET'])
 def addAlly(in_hero_name):
@@ -284,7 +289,7 @@ if __name__ == '__main__':
     currentUser = ""
     # print(all_heroes)
 
-    # testDatabase()
+    #testDatabase()
     # printDatabase()
 
     # clearDatabase()

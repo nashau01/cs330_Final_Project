@@ -1,4 +1,4 @@
-heroSelector = new function () {
+heroSelector = new function (user) {
 
     var mainTb = document.querySelector("#heroList");
 
@@ -11,7 +11,6 @@ heroSelector = new function () {
     "tyrael", "tyrande", "uther", "valla", "xul", "zagara", "zeratul"];
 
     for (name in nameArray) {
-
         var newTr = document.createElement("tr");
         var names = nameArray[name];
 
@@ -42,14 +41,12 @@ heroSelector = new function () {
         newEnemyInput.type = 'checkbox';
         newAlliedInput.setAttribute('value', names);
         newEnemyInput.setAttribute('value', names);
-        newAlliedInput.setAttribute('onClick', "heroProfileDisplay({{username}});");
-        newEnemyInput.setAttribute('onClick', "heroProfileDisplay({{username}});");
-
+        newAlliedInput.onclick = doAllyCheck;
+        newEnemyInput.onclick = doEnemyCheck;
         var spacerTd = document.createElement("td");
         newTr.appendChild(spacerTd);
 
         newAlliedInputTd.appendChild(newAlliedInput);
-        newAlliedInputTd.setAttribute("onclick", "doAllyCheck();");
         newTr.appendChild(newAlliedInputTd);
 
         //newTr.appendChild(alliedImageTd);
@@ -65,6 +62,7 @@ heroSelector = new function () {
     }
 };
 
+
 function doAllyCheck() {
     //alert(this.id + " : " + this.checked);
     // PUT - /todo/<int:id>
@@ -75,15 +73,44 @@ function doAllyCheck() {
 
     if (this.checked == true) {
         var req = new XMLHttpRequest();
-        req.open("PUT", "/addAlly/" + this.value, true);
+        window.alert(this.value);
+        req.open("GET", "/addAlly/" + this.value, true);
         req.setRequestHeader("Content-type", "application/json");
-
-        //var data = {}     //unused?
-        //data.done = true  //unused?
+        req.onreadystatechange = function() {
+            if(req.readyState == 4 && req.status == 200) {
+                optArray = [];
+                optDict = JSON.parse(req.responseText);
+                for(hero in optDict) {
+                    optArray.append(optDict[hero])
+                }
+                window.alert(optArray);
+            }
+        };
 
         req.send()
     }
 }
+
+
+
+
+/*<script type="text/javascript">
+    function heroProfileDisplay(user) {
+        window.alert(user);
+        var req = new XMLHttpRequest();
+        req.open("GET", "/getHeroes/" + user, true);
+        req.onreadystatechange = function() {
+            if (req.readyState == 4 && req.status == 200) {
+                heroesDict = JSON.parse(req.responseText);
+                window.alert("HeroDict:" + heroesDict);
+                for(hero in heroesDict){
+                    window.alert("heroList:" + heroesDict[hero]);
+                }
+            }
+        };
+        req.send()
+    }
+</script> */
 
 // function doEnemyCheck() {
 // }
