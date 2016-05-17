@@ -1,1 +1,40 @@
 {% extends "layout.html" %}
+
+{% block content %}
+
+    <h3> Hello, {{ username }}! Here are the heroes you control:</h3>
+
+    <ol id="userHeroes">
+
+    </ol>
+
+    <script type="text/javascript">
+        window.onload = function() { userDisplay() };
+
+        function userDisplay() {
+            var req = new XMLHttpRequest();
+            req.open("GET", "/getHeroes/" + '{{ username }}', true);
+            req.setRequestHeader("Content-type", "application/json");
+            req.onreadystatechange = function() {
+                if(req.readyState == 4 && req.status == 200) {
+                    heroesDict = JSON.parse(req.responseText);
+                    for(hero in heroesDict) {
+                        h = document.createElement('li');
+                        h.innerHTML = heroesDict[hero];
+                        document.getElementById('userHeroes').appendChild(h);
+                    }
+                }
+            };
+            req.send()
+        }
+
+
+
+    </script>
+
+
+
+
+
+
+{% endblock %}

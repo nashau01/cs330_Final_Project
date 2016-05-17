@@ -107,7 +107,7 @@ def profile():
                 return redirect("/draft")
 
     if not currentUser == "":
-        return render_template("userprofile.html")
+        return render_template("userprofile.html", username=currentUser)
 
     return redirect('/')
 
