@@ -1,4 +1,4 @@
-heroSelector = new function (user) {
+heroSelector = new function () {
 
     var mainTb = document.querySelector("#heroList");
 

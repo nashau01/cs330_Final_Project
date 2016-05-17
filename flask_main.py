@@ -10,8 +10,8 @@ flask_app = Flask(__name__)
 flask_app.debug = True
 
 draft_dict = {
-    "allies" : ["zagara", "uther", "greymane"],
-    "enemies" : ["the-butcher", "lili"],
+    "allies" : [],
+    "enemies" : [],
     "user_owned_heroes" : []
 }
 
@@ -142,17 +142,16 @@ def displayHeroesForUser(in_username):
     #return jsonify({'heroes': hero_name_list})
     return jsonify(hero_name_dict)
 
-@flask_app.route("/addAlly/<string:in_hero_name>", methods = ['GET'])
+@flask_app.route("/addAlly/<string:in_hero_name>", methods = ['GET', 'PUT'])
 def addAlly(in_hero_name):
     draft_dict['allies'].append(in_hero_name)
-    print("YAYYAYAYAYAYAYAYAYAYA")
-    return "added ally"
+    print(draft_dict['allies'])
+    return displayOptimalSelections()
 
 @flask_app.route("/addEnemy/<string:in_hero_name>", methods = ['GET'])
 def addEnemy(in_hero_name):
     draft_dict['enemies'].append(in_hero_name)
     return "added enemy"
-
 
 @flask_app.route("/")
 def login():
@@ -175,7 +174,20 @@ def displayOptimalSelections():
     drafter = HoTS_Drafter(draft_dict['allies'], draft_dict['enemies'], draft_dict['user_owned_heroes'])
     print(drafter.ordered_optimal_selections)
 
-    return render_template("optimal_selections.html", ordered_optimal_selections = drafter.ordered_optimal_selections)
+    number_of_options_returned = 5
+
+    #keys: (int) rank    values: (string) name
+    opt_selections_dict = {}
+
+    for i in range(number_of_options_returned):
+        rank_int = i + 1
+        rank_key = str(rank_int)
+        opt_selections_dict[rank_key] = drafter.ordered_optimal_selections[i][0]
+
+    # return render_template("optimal_selections.html", ordered_optimal_selections = drafter.ordered_optimal_selections)
+    print(opt_selections_dict)
+
+    return jsonify(opt_selections_dict)
 
 def displayHeroSelector():
     pass
